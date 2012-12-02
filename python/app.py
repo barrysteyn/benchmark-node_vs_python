@@ -8,7 +8,7 @@ def IOTest(): #Will read "Lorem Ipsum" to disk, and then write it back
     #Read Lorem from disk
     f = open("lorem_ipsum_input.txt","r")
    
-    for line in f: #Note: This is an efficient way (in terms of memory) of reading files in python
+    for line in f:
         lorem_ipsum.append(line)
 
     f.close()
