@@ -1,12 +1,16 @@
+import sys
 from flask import Flask
 app = Flask(__name__)
+
+#Will pass errors to uwsgi for logging
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 @app.route('/')
 def IOTest(): #Will read "Lorem Ipsum" to disk, and then write it back
     lorem_ipsum = []
     
     #Read Lorem from disk
-    f = open("lorem_ipsum_input.txt","r")
+    f = open(sys.path[0]+"/lorem_ipsum_input.txt","r")
    
     for line in f:
         lorem_ipsum.append(line)
@@ -14,7 +18,7 @@ def IOTest(): #Will read "Lorem Ipsum" to disk, and then write it back
     f.close()
 
     #Write Lorem to disk
-    f = open("lorem_ipsum_output.txt","w")
+    f = open(sys.path[0]+"/lorem_ipsum_output.txt","w")
     for line in lorem_ipsum:
         f.write(line)
 
